@@ -19,7 +19,7 @@ eventually consistent.
 
 | Method | Path             | Produces           |
 | ------ | ---------------- | ------------------ |
-| `GET`  | `/agent/members` | `application/json` |
+| `GET`  | `/v1/agent/members` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -78,9 +78,9 @@ register themselves with these server addresses so that they may dequeue work.
 The servers endpoint can be used to keep this configuration up to date if there
 are changes in the cluster.
 
-| Method | Path             | Produces           |
-| ------ | ---------------- | ------------------ |
-| `GET`  | `/agent/servers` | `application/json` |
+| Method | Path                | Produces           |
+| ------ | ------------------- | ------------------ |
+| `GET`  | `/v1/agent/servers` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -108,9 +108,9 @@ $ curl \
 This endpoint updates the list of known servers to the provided list. This
 **replaces** all previous server addresses with the new list.
 
-| Method | Path             | Produces       |
-| ------ | ---------------- | -------------- |
-| `POST` | `/agent/servers` | `(empty body)` |
+| Method | Path                | Produces       |
+| ------ | ------------------- | -------------- |
+| `POST` | `/v1/agent/servers` | `(empty body)` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -137,9 +137,9 @@ $ curl \
 
 This endpoint queries the state of the target agent (self).
 
-| Method | Path          | Produces           |
-| ------ | ------------- | ------------------ |
-| `GET`  | `/agent/self` | `application/json` |
+| Method | Path             | Produces           |
+| ------ | ---------------- | ------------------ |
+| `GET`  | `/v1/agent/self` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -390,9 +390,9 @@ $ curl \
 This endpoint introduces a new member to the gossip pool. This endpoint is only
 eligible for servers.
 
-| Method | Path          | Produces           |
-| ------ | ------------- | ------------------ |
-| `POST` | `/agent/join` | `application/json` |
+| Method | Path             | Produces           |
+| ------ | ---------------- | ------------------ |
+| `POST` | `/v1/agent/join` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -431,9 +431,9 @@ This endpoint forces a member of the gossip pool from the `"failed"` state to
 the `"left"` state. This allows the consensus protocol to remove the peer and
 stop attempting replication. This is only applicable for servers.
 
-| Method | Path                 | Produces           |
-| ------ | -------------------- | ------------------ |
-| `POST` | `/agent/force-leave` | `application/json` |
+| Method | Path                    | Produces           |
+| ------ | ----------------------- | ------------------ |
+| `POST` | `/v1/agent/force-leave` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -463,9 +463,9 @@ is the endpoint Nomad will register for its own health checks.
 When the agent is unhealthy 500 will be returned along with JSON response
 containing an error message.
 
-| Method | Path            | Produces           |
-| ------ | --------------- | ------------------ |
-| `GET`  | `/agent/health` | `application/json` |
+| Method | Path               | Produces           |
+| ------ | ------------------ | ------------------ |
+| `GET`  | `/v1/agent/health` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -505,9 +505,9 @@ nomad operator debug. Known sensitive environment variables are shown as
 `<redacted>`, but the response may still contain sensitive
 information.
 
-| Method | Path          | Produces           |
-| ------ | ------------- | ------------------ |
-| `GET`  | `/agent/host` | `application/json` |
+| Method | Path             | Produces           |
+| ------ | ---------------- | ------------------ |
+| `GET`  | `/v1/agent/host` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -585,9 +585,9 @@ $ curl \
 
 This endpoint streams logs from the local agent until the connection is closed
 
-| Method | Path             | Produces           |
-| ------ | ---------------- | ------------------ |
-| `GET`  | `/agent/monitor` | `application/json` |
+| Method | Path                | Produces           |
+| ------ | ------------------- | ------------------ |
+| `GET`  | `/v1/agent/monitor` | `application/json` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
@@ -654,12 +654,12 @@ This endpoint is the equivalent of Go's /debug/pprof endpoint but is protected
 by ACLs and supports remote forwarding to a client node or server. See the
 [Golang documentation](https://golang.org/pkg/runtime/pprof/#Profile) for a list of available profiles.
 
-| Method | Path                           | Produces                   |
-| ------ | ------------------------------ | -------------------------- |
-| `GET`  | `/agent/pprof/cmdline`         | `text/plain`               |
-| `GET`  | `/agent/pprof/profile`         | `application/octet-stream` |
-| `GET`  | `/agent/pprof/trace`           | `application/octet-stream` |
-| `GET`  | `/agent/pprof/<pprof profile>` | `application/octet-stream` |
+| Method | Path                              | Produces                   |
+| ------ | --------------------------------- | -------------------------- |
+| `GET`  | `/v1/agent/pprof/cmdline`         | `text/plain`               |
+| `GET`  | `/v1/agent/pprof/profile`         | `application/octet-stream` |
+| `GET`  | `/v1/agent/pprof/trace`           | `application/octet-stream` |
+| `GET`  | `/v1/agent/pprof/<pprof profile>` | `application/octet-stream` |
 
 The table below shows this endpoint's support for
 [blocking queries](/api-docs#blocking-queries) and
